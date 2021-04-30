@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 app.use(function(req, res, next) {
-  var log = req.method + ' ' + req.path ' - ' + req.ip;
+  var log = req.method + ' ' + req.path + ' - ' + req.ip;
   console.log(log);
   next();
 })
@@ -21,10 +21,12 @@ app.get("/json", function(req, res) {
   res.json(message);
 });
 
-
-
-
-
+app.get('/now', function(req, res, next) {
+  req.time = new Date().toString();
+  next();
+}, function(req, res) {
+  res.send({time: req.time});
+});
 
 
 
