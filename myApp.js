@@ -28,7 +28,10 @@ app.get('/now', function(req, res, next) {
   res.send({time: req.time});
 });
 
-
+app.get('/:word/echo', function(req, res) {
+  const word = req.params;
+  res.json({echo: word});
+});
 
 
 
